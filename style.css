@@ -1,0 +1,35 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+#UI{
+    height: 10%;
+    width: 100%;
+}
+#arena{
+    display: flex;
+    height: 50%;
+    background-image: url('./fondo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+#pokePropio{
+    position: fixed;
+    top: 430px;
+    left: 100px;
+}
+#pokeRival{
+    position: fixed;
+    top: 370px;
+    left: 300px;
+}
+#poke-rival{
+    height: 20%;
+    width: 100%;
+}
+#poke-propio{
+    height: 20%;
+    width: 100%;
+}
