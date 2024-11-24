@@ -1,35 +1,51 @@
-body{
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
+body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
-#UI{
-    height: 10%;
-    width: 100%;
+
+#info {
+  display: flex;
+  flex-flow: row wrap;
 }
-#arena{
-    display: flex;
-    height: 50%;
-    background-image: url('./fondo.png');
-    background-repeat: no-repeat;
-    background-size: contain;
+
+.stats {
+  font-family: Arial, Helvetica, sans-serif;
 }
-#pokePropio{
-    position: fixed;
-    top: 430px;
-    left: 100px;
+
+/* #poke-propio { */
+/*   grid-column: 2; */
+/*   grid-row: 1; */
+/* } */
+
+/* #poke-rival { */
+/*   grid-column: 1; */
+/*   grid-row: 1; */
+/* } */
+
+#arena {
+  height: 50%;
+  background-image: url('./fondo.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 }
-#pokeRival{
-    position: fixed;
-    top: 370px;
-    left: 300px;
+
+#pokePropio {
+  object-position: right;
+  height: 50%;
+  width: 20%;
 }
-#poke-rival{
-    height: 20%;
-    width: 100%;
+
+#pokeRival {
+  object-position: right;
+  height: 100%;
+  width: 50%;
 }
-#poke-propio{
-    height: 20%;
-    width: 100%;
+
+#UI {
+  height: 10%;
+  width: 100%;
 }

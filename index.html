@@ -1,41 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio JS</title>
-    <link rel="stylesheet" href="./style.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PokeApp</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
+
 <body>
-    
+  <div id="info">
     <div class="stats" id="poke-rival">
-        <h3 id="nombreRival"></h3>
-        <p id="tipo1Riva"></p>
-        <p id="tipo2Rival"></p>
-        <p>Vida: <span id="vidaRival"></span></p>
-        <p>Ataque: <span id="ataqueFisRival"></span></p>
-        <p>Ataque Especial: <span id="ataqueEspRival"></span></p>
-        <p>Defensa Especial: <span id="defensaEspRival"></span></p>
-        <p>Defensa Fisica: <span id="defensaFisRival"></span></p>
-        <p>Velocidad: <span id="velocidadRival"></span></p>
-    </div>
- 
-    <div class="arena">
-        <img id="pokeRival" src="" alt="">
-        <img id="pokePropio" src="" alt="">
+      <h3 id="nombreRival"></h3>
+      <p id="tipo1Rival"></p>
+      <p id="tipo2Rival"></p>
+      <p>Vida: <span id="vidaRival"></span></p>
+      <p>Ataque: <span id="ataqueFisRival"></span></p>
+      <p>Ataque Especial: <span id="ataqueEspRival"></span></p>
+      <p>Defensa Especial: <span id="defensaEspRival"></span></p>
+      <p>Defensa Fisica: <span id="defensaFisRival"></span></p>
+      <p>Velocidad: <span id="velocidadRival"></span></p>
     </div>
 
     <div class="stats" id="poke-propio">
-        
+      <h3 id="nombrePropio"></h3>
+      <p id="tipo1Propio"></p>
+      <p id="tipo2Propio"></p>
+      <p>Vida: <span id="vidaPropio"></span></p>
+      <p>Ataque: <span id="ataqueFisPropio"></span></p>
+      <p>Ataque Especial: <span id="ataqueEspPropio"></span></p>
+      <p>Defensa Especial: <span id="defensaEspPropio"></span></p>
+      <p>Defensa Fisica: <span id="defensaFisPropio"></span></p>
+      <p>Velocidad: <span id="velocidadPropio"></span></p>
     </div>
+  </div>
+  <div id="arena">
+    <img id="pokeRival" src="" alt="">
+    <img id="pokePropio" src="" alt="">
+  </div>
 
-    <div>
-        <input id="input" max="1000" type="number">
-        <button id="btn-poke">Elegir poke</button>
-        <button id="btn-atk-fis">Ataque Fisico</button>
-        <button id="btn-atk-esp">Ataque Especial</button>
-    </div>
-    <script src="./app.js"></script>
+
+  <div id="UI">
+    <input id="input" max="1000" type="number">
+    <button id="btn-poke">Elegir poke</button>
+    <button id="btn-atk-fis">Ataque Fisico</button>
+    <button id="btn-atk-esp">Ataque Especial</button>
+  </div>
+  <script src="./app.js"></script>
 </body>
+
 </html>
