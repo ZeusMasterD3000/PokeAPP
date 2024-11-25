@@ -26,7 +26,11 @@ class Pokemon {
       return res.data
     }).then((res) => {
       this.table.src = res.sprites.front_default;
-      this.img.src = res.sprites.back_default;
+      if(this.propiedad == 'Propio') {
+        this.img.src = res.sprites.back_default;
+      } else {
+        this.img.src = res.sprites.front_default;
+      }
       this.nombre.innerHTML = res.name;
       this.tipo1.innerHTML = res.types[0].type.name;
       if (res.types[1] != undefined) {
