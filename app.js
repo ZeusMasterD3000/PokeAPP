@@ -163,30 +163,50 @@ const mostrarOpcionesDeAtaque = () => {
   } else {
     turnoPropio = false;
     let numeroRandom = getNumRandom() % 2;
-    alert(numeroRandom)
-    ataque(numeroRandom);
+    if (numeroRandom) {
+      ataque(numeroRandom, btnAtaqueFisico);
+    } else {
+      ataque(numeroRandom, btnAtaqueEspecial);
+    }
   }
 
   btnAtaqueFisico.addEventListener('click', () => {
-    ataque(true);
-    btnAtaqueFisico.disabled = !turnoPropio;
+    ataque(true, btnAtaqueFisico);
+    let numeroRandom = getNumRandom() % 2;
+    ataque(numeroRandom, btnAtaqueFisico);
+    if (parseInt(PokePropio.vida.innerHTML) <= 0) {
+      alert('¡Perdiste, bro!');
+      location.reload();
+    } else if (parseInt(PokeRival.vida.innerHTML) <= 0) {
+      alert('¡Ganaste, bro!');
+      location.reload();
+    }
   });
   btnAtaqueEspecial.addEventListener('click', () => {
-    ataque(false);
-    btnAtaqueEspecial.disabled = !turnoPropio;
+    ataque(false, btnAtaqueEspecial);
+    let numeroRandom = getNumRandom() % 2;
+    ataque(numeroRandom, btnAtaqueEspecial);
+    if (parseInt(PokePropio.vida.innerHTML) <= 0) {
+      alert('¡Perdiste, bro!');
+      location.reload();
+    } else if (parseInt(PokeRival.vida.innerHTML) <= 0) {
+      alert('¡Ganaste, bro!');
+      location.reload();
+    }
   });
 
 };
 
 // Función para gestionar ataques
-const ataque = (ataqueFisico) => {
+const ataque = (ataqueFisico, btn) => {
+  btn.disabled = turnoPropio;
   let pokeaux1;
   let pokeaux2;
   let indice1;
   let indice2;
   let danoRecib;
 
-  if(turnoPropio){
+  if (turnoPropio) {
     pokeaux1 = PokePropio;
     pokeaux2 = PokeRival;
     indice1 = tiposPoke.get(pokeaux1.tipo1.innerHTML);
@@ -200,13 +220,16 @@ const ataque = (ataqueFisico) => {
 
   if (ataqueFisico) {
     alert('¡Ataque físico ejecutado!');
-    danoRecib = tabla_ataque[indice1][indice2](+pokeaux1.ataqueFisico.innerHTML - +pokeaux2.defensaFis.innerHTML);
-    pokeaux2.vida.innerHTML = +pokeaux2.vida.innerHTML - danoRecib; 
-    alert(pokeaux2.vida.innerHTML);
+    danoRecib = tabla_ataque[indice1][indice2] * (parseInt(pokeaux1.atkFis.innerHTML) - parseInt(pokeaux2.defensaFis.innerHTML));
+    if (danoRecib > 0) {
+      pokeaux2.vida.innerHTML = parseInt(pokeaux2.vida.innerHTML) - danoRecib;
+    }
   } else {
     alert('¡Ataque especial ejecutado!');
-    danoRecib = tabla_ataque[indice2][indice1](+pokeaux2.ataqueFisico.innerHTML - +pokeaux1.defensaFis.innerHTML);
-    pokeaux1.vida.innerHTML = +pokeaux1.vida.innerHTML - danoRecib; 
+    danoRecib = tabla_ataque[indice1][indice2] * (parseInt(pokeaux1.atkEsp.innerHTML) - parseInt(pokeaux2.defensaEsp.innerHTML));
+    if (danoRecib > 0) {
+      pokeaux2.vida.innerHTML = parseInt(pokeaux2.vida.innerHTML) - danoRecib;
+    }
   }
 
   turnoPropio = !turnoPropio;
