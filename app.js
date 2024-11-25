@@ -11,6 +11,7 @@ class Pokemon {
     this.defensaEsp = document.querySelector(`#defensaEsp${propiedad}`);
     this.defensaFis = document.querySelector(`#defensaFis${propiedad}`);
     this.velocidad = document.querySelector(`#velocidad${propiedad}`);
+    this.table = document.querySelector(`#ima${propiedad}`);
   }
 
   obtenerPoke() {
@@ -24,6 +25,7 @@ class Pokemon {
     axios.get(`https://pokeapi.co/api/v2/pokemon/${num}`).then((res) => {
       return res.data
     }).then((res) => {
+      this.table.src = res.sprites.front_default;
       this.img.src = res.sprites.back_default;
       this.nombre.innerHTML = res.name;
       this.tipo1.innerHTML = res.types[0].type.name;
