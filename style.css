@@ -3,49 +3,115 @@ body {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  background-color: #f4f4f9; /* Fondo claro para contraste */
+  font-family: 'VT323', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  font-size: 40px;
+  background: linear-gradient(45deg, peru, goldenrod);
+  color: white;
+  height: 100px;
+  width: 100%;
+  text-align: center;
+  line-height: 100px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+  font-family: 'VT323', monospace;
+}
+
+#container {
+  width: 97%;
+  /*max-width: 1200px; /* Limita el ancho en pantallas grandes */
+  margin: 20px auto;
 }
 
 #info {
   display: flex;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 5px;
+  margin: 20px 0;
+}
+
+#MiPoke, #TuPoke {
+  height: auto;
+  max-width: 200px;
 }
 
 .stats {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'VT323', monospace;
+  background: #ffffff; /* Fondo blanco para contraste */
+  border: 1px solid #ddd; /* Borde sutil */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 10px;
+  width: 13%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+  text-align: center;
 }
-
-/* #poke-propio { */
-/*   grid-column: 2; */
-/*   grid-row: 1; */
-/* } */
-
-/* #poke-rival { */
-/*   grid-column: 1; */
-/*   grid-row: 1; */
-/* } */
 
 #arena {
-  height: 50%;
+  margin: 0 auto;
+  height: 500px;
+  width: 70%;
   background-image: url('./fondo.png');
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#pokePropio {
-  object-position: right;
-  height: 50%;
-  width: 20%;
+#pokePropio{
+  position: absolute;
+  top: 350px;
+  left: 250px;
+  height: 250px;
+  max-width: 30%;
 }
-
-#pokeRival {
-  object-position: right;
-  height: 100%;
-  width: 50%;
+#pokeRival{
+  position: absolute;
+  top: 200px;
+  left: 630px;
+  height: 250px;
+  max-width: 30%;
 }
 
 #UI {
-  height: 10%;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#UI input {
+  padding: 10px;
+  font-size: 16px;
+  width: 100px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#UI button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: peru;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#UI button:hover {
+  background-color: goldenrod;
+  transform: scale(1.05);
 }
