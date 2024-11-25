@@ -60,7 +60,6 @@ header {
   margin: 0 auto;
   height: 500px;
   width: 70%;
-  background-image: url('./fondo.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -68,18 +67,49 @@ header {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Fondo inicial */
+.background-1 {
+  background-image: url('./fondo.png');
+}
+
+/* Fondo alternativo */
+.background-2 {
+  background-image: url('./images.png');
+}
+
+/* Fondo inicial */
+.background-1 #pokePropio {
+  top: 330px;
+  left: 220px;
+}
+
+.background-1 #pokeRival {
+  top: 185px;
+  left: 580px;
+}
+
+/* Fondo alternativo */
+.background-2 #pokePropio {
+  height: 400px;
+  top: 300px;
+  left: 80px;
+}
+
+.background-2 #pokeRival {
+  height: 300px;
+  top: 220px;
+  left: 645px;
+}
+
+
 #pokePropio{
   position: absolute;
-  top: 350px;
-  left: 250px;
-  height: 250px;
+  height: 275px;
   max-width: 30%;
 }
 #pokeRival{
   position: absolute;
-  top: 200px;
-  left: 630px;
-  height: 250px;
+  height: 275px;
   max-width: 30%;
 }
 

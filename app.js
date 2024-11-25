@@ -49,6 +49,7 @@ class Pokemon {
 //Interfaz de usuario
 const input = document.querySelector('#input');
 const btnElegir = document.querySelector('#btn-poke');
+const btnBatalla = document.querySelector('#btn-battle');
 const btnAtkFis = document.querySelector('#btn-atk-fis');
 const btnAtkEsp = document.querySelector('#btn-atk-esp');
 
@@ -75,10 +76,66 @@ const PokeRival = new Pokemon('Rival');
 //poke2VidaRestante = poke2Vida - DañoRecibido;
 //Se turnarán los pokemon hasta que haya un ganador
 //Mostrar el ganador
+
+// Alternar fondos del campo de batalla
+let fondoAlternado = false;
+
+btnBatalla.addEventListener('click', () => {
+  const arena = document.querySelector('#arena');
+
+  // Cambiar el fondo al presionar "Batalla"
+  arena.classList.toggle('background-1', fondoAlternado);
+  arena.classList.toggle('background-2', !fondoAlternado);
+
+  fondoAlternado = !fondoAlternado;
+
+  // Reemplazar botones después de iniciar la batalla
+  combate();
+  mostrarOpcionesDeAtaque();
+});
+
+// Función para reemplazar los botones por "Ataque Físico" y "Ataque Especial"
+const mostrarOpcionesDeAtaque = () => {
+  // Seleccionar contenedor de botones
+  const UI = document.querySelector('#UI');
+
+  // Eliminar botones existentes
+  btnElegir.remove();
+  btnBatalla.remove();
+
+  // Crear botón de Ataque Físico
+  const btnAtaqueFisico = document.createElement('button');
+  btnAtaqueFisico.id = 'btn-atk-fis';
+  btnAtaqueFisico.textContent = 'Ataque Físico';
+  UI.appendChild(btnAtaqueFisico);
+
+  // Crear botón de Ataque Especial
+  const btnAtaqueEspecial = document.createElement('button');
+  btnAtaqueEspecial.id = 'btn-atk-esp';
+  btnAtaqueEspecial.textContent = 'Ataque Especial';
+  UI.appendChild(btnAtaqueEspecial);
+
+  // Añadir eventos a los nuevos botones
+  btnAtaqueFisico.addEventListener('click', () => ataque('fisico'));
+  btnAtaqueEspecial.addEventListener('click', () => ataque('especial'));
+};
+
+// Función para gestionar ataques
+const ataque = (tipo) => {
+  if (tipo === 'fisico') {
+    alert('¡Ataque físico ejecutado!');
+    // Aquí se implementa la lógica para ataques físicos
+  } else if (tipo === 'especial') {
+    alert('¡Ataque especial ejecutado!');
+    // Aquí se implementa la lógica para ataques especiales
+  }
+};
+
+// Función de combate
 const combate = () => {
+  alert('¡El combate comenzará aquí!');
+};
 
-
-}
 
 window.addEventListener('load', () => PokeRival.obtenerPoke());
 btnElegir.addEventListener('click', () => {
