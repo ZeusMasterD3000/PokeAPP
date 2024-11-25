@@ -7,4 +7,4 @@
     - Echevarria Aguilar Luis Angel
     - García Castro Lizbeth
     - Jacinto Robledo Valeria Berenice 
-    - Pérez Paitán Brent Armando
+    - Pérez Paitán Brent Armando            ---> Apartado Gráfico
