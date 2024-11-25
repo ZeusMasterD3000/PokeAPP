@@ -75,9 +75,49 @@ const PokeRival = new Pokemon('Rival');
 //poke2VidaRestante = poke2Vida - DañoRecibido;
 //Se turnarán los pokemon hasta que haya un ganador
 //Mostrar el ganador
+
+const tiposPoke = new Map();
+tiposPoke.set("steel", 0);
+tiposPoke.set("water", 1);
+tiposPoke.set("bug", 2);
+tiposPoke.set("dragon", 3);
+tiposPoke.set("electric", 4);
+tiposPoke.set("ghost", 5);
+tiposPoke.set("fire", 6);
+tiposPoke.set("fairy", 7);
+tiposPoke.set("ice", 8);
+tiposPoke.set("fighting", 9);
+tiposPoke.set("normal", 10);
+tiposPoke.set("grass", 11);
+tiposPoke.set("psychic", 12);
+tiposPoke.set("rock", 13);
+tiposPoke.set("dark", 14);
+tiposPoke.set("ground", 15);
+tiposPoke.set("poison", 16);
+tiposPoke.set("flying", 17);
+
+const tabla_ataque = [
+  [1/2, 1/2, 1, 1, 1/2, 1, 1/2, 2, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1],
+  [1, 1/2, 1, 1/2, 1, 1, 2, 1, 1, 1, 1, 1/2, 1, 2, 1, 2, 1, 1],
+  [1/2, 1, 1, 1, 1, 1/2, 1/2, 1/2, 1, 1/2, 1, 2, 2, 1, 2, 1, 1/2, 1/2],
+  [1/2, 1, 1, 2, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 2, 1, 1/2, 1/2, 1, 1, 1, 1, 1, 1/2, 1, 1, 1, 0, 1, 2],
+  [1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0, 1, 2, 1, 1/2, 1, 1, 1],
+  [2, 1/2, 2, 1/2, 1, 1, 1/2, 1, 2, 1, 1, 2, 1, 1/2, 1, 1, 1, 1],
+  [1/2, 1, 1, 2, 1, 1, 1/2, 1, 1, 2, 1, 1, 1, 1, 2, 1/2, 1],
+  [1/2, 1/2, 1, 2, 1, 1, 1/2, 1, 1/2, 1, 1, 2, 1, 1, 1, 2, 1, 2],
+  [2, 1, 1/2, 1, 1, 0, 1, 1/2, 2, 1, 2, 1, 1/2, 2, 2, 1, 1/2, 1/2],
+  [1/2, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1/2, 1, 1, 1, 1],
+  [1/2, 2, 1/2, 1/2, 1, 1, 1/2, 1, 1, 1, 1, 1/2, 1, 2, 1, 2, 1/2, 1/2],
+  [1/2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1/2, 1, 0, 1, 2, 1],
+  [1/2, 1, 2, 1, 1, 1, 2, 1, 2, 1/2, 1, 1, 1, 1, 1, 1/2, 1, 2],
+  [1, 1, 1, 1, 1, 2, 1, 1/2, 1, 1/2, 1, 1, 2, 1, 1/2, 1, 1, 1],
+  [2, 1, 1/2, 1, 2, 1, 2, 1, 1, 1, 1, 1/2, 1, 2, 1, 1, 2, 0],
+  [0, 1, 1, 1, 1, 1/2, 1, 2, 1, 1, 1, 2, 1, 1/2, 1, 1/2, 1/2, 1],
+  [1/2, 1, 2, 1, 1/2, 1, 1, 1, 1, 2, 1, 2, 1, 1/2, 1, 1, 1, 1]
+];
+
 const combate = () => {
-
-
 }
 
 window.addEventListener('load', () => PokeRival.obtenerPoke());
