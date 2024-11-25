@@ -26,7 +26,7 @@ class Pokemon {
       return res.data
     }).then((res) => {
       this.table.src = res.sprites.front_default;
-      if(this.propiedad == 'Propio') {
+      if (this.propiedad == 'Propio') {
         this.img.src = res.sprites.back_default;
       } else {
         this.img.src = res.sprites.front_default;
@@ -61,6 +61,7 @@ const getNumRandom = () => {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
+let turnoPropio;
 const PokePropio = new Pokemon('Propio');
 const PokeRival = new Pokemon('Rival');
 
@@ -98,24 +99,24 @@ tiposPoke.set("poison", 16);
 tiposPoke.set("flying", 17);
 
 const tabla_ataque = [
-  [1/2, 1/2, 1, 1, 1/2, 1, 1/2, 2, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1],
-  [1, 1/2, 1, 1/2, 1, 1, 2, 1, 1, 1, 1, 1/2, 1, 2, 1, 2, 1, 1],
-  [1/2, 1, 1, 1, 1, 1/2, 1/2, 1/2, 1, 1/2, 1, 2, 2, 1, 2, 1, 1/2, 1/2],
-  [1/2, 1, 1, 2, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 2, 1, 1/2, 1/2, 1, 1, 1, 1, 1, 1/2, 1, 1, 1, 0, 1, 2],
-  [1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0, 1, 2, 1, 1/2, 1, 1, 1],
-  [2, 1/2, 2, 1/2, 1, 1, 1/2, 1, 2, 1, 1, 2, 1, 1/2, 1, 1, 1, 1],
-  [1/2, 1, 1, 2, 1, 1, 1/2, 1, 1, 2, 1, 1, 1, 1, 2, 1/2, 1],
-  [1/2, 1/2, 1, 2, 1, 1, 1/2, 1, 1/2, 1, 1, 2, 1, 1, 1, 2, 1, 2],
-  [2, 1, 1/2, 1, 1, 0, 1, 1/2, 2, 1, 2, 1, 1/2, 2, 2, 1, 1/2, 1/2],
-  [1/2, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1/2, 1, 1, 1, 1],
-  [1/2, 2, 1/2, 1/2, 1, 1, 1/2, 1, 1, 1, 1, 1/2, 1, 2, 1, 2, 1/2, 1/2],
-  [1/2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1/2, 1, 0, 1, 2, 1],
-  [1/2, 1, 2, 1, 1, 1, 2, 1, 2, 1/2, 1, 1, 1, 1, 1, 1/2, 1, 2],
-  [1, 1, 1, 1, 1, 2, 1, 1/2, 1, 1/2, 1, 1, 2, 1, 1/2, 1, 1, 1],
-  [2, 1, 1/2, 1, 2, 1, 2, 1, 1, 1, 1, 1/2, 1, 2, 1, 1, 2, 0],
-  [0, 1, 1, 1, 1, 1/2, 1, 2, 1, 1, 1, 2, 1, 1/2, 1, 1/2, 1/2, 1],
-  [1/2, 1, 2, 1, 1/2, 1, 1, 1, 1, 2, 1, 2, 1, 1/2, 1, 1, 1, 1]
+  [1 / 2, 1 / 2, 1, 1, 1 / 2, 1, 1 / 2, 2, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1],
+  [1, 1 / 2, 1, 1 / 2, 1, 1, 2, 1, 1, 1, 1, 1 / 2, 1, 2, 1, 2, 1, 1],
+  [1 / 2, 1, 1, 1, 1, 1 / 2, 1 / 2, 1 / 2, 1, 1 / 2, 1, 2, 2, 1, 2, 1, 1 / 2, 1 / 2],
+  [1 / 2, 1, 1, 2, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 2, 1, 1 / 2, 1 / 2, 1, 1, 1, 1, 1, 1 / 2, 1, 1, 1, 0, 1, 2],
+  [1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0, 1, 2, 1, 1 / 2, 1, 1, 1],
+  [2, 1 / 2, 2, 1 / 2, 1, 1, 1 / 2, 1, 2, 1, 1, 2, 1, 1 / 2, 1, 1, 1, 1],
+  [1 / 2, 1, 1, 2, 1, 1, 1 / 2, 1, 1, 2, 1, 1, 1, 1, 2, 1 / 2, 1],
+  [1 / 2, 1 / 2, 1, 2, 1, 1, 1 / 2, 1, 1 / 2, 1, 1, 2, 1, 1, 1, 2, 1, 2],
+  [2, 1, 1 / 2, 1, 1, 0, 1, 1 / 2, 2, 1, 2, 1, 1 / 2, 2, 2, 1, 1 / 2, 1 / 2],
+  [1 / 2, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 / 2, 1, 1, 1, 1],
+  [1 / 2, 2, 1 / 2, 1 / 2, 1, 1, 1 / 2, 1, 1, 1, 1, 1 / 2, 1, 2, 1, 2, 1 / 2, 1 / 2],
+  [1 / 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1 / 2, 1, 0, 1, 2, 1],
+  [1 / 2, 1, 2, 1, 1, 1, 2, 1, 2, 1 / 2, 1, 1, 1, 1, 1, 1 / 2, 1, 2],
+  [1, 1, 1, 1, 1, 2, 1, 1 / 2, 1, 1 / 2, 1, 1, 2, 1, 1 / 2, 1, 1, 1],
+  [2, 1, 1 / 2, 1, 2, 1, 2, 1, 1, 1, 1, 1 / 2, 1, 2, 1, 1, 2, 0],
+  [0, 1, 1, 1, 1, 1 / 2, 1, 2, 1, 1, 1, 2, 1, 1 / 2, 1, 1 / 2, 1 / 2, 1],
+  [1 / 2, 1, 2, 1, 1 / 2, 1, 1, 1, 1, 2, 1, 2, 1, 1 / 2, 1, 1, 1, 1]
 ];
 
 // Alternar fondos del campo de batalla
@@ -131,7 +132,6 @@ btnBatalla.addEventListener('click', () => {
   fondoAlternado = !fondoAlternado;
 
   // Reemplazar botones después de iniciar la batalla
-  combate();
   mostrarOpcionesDeAtaque();
 });
 
@@ -157,19 +157,59 @@ const mostrarOpcionesDeAtaque = () => {
   UI.appendChild(btnAtaqueEspecial);
 
   // Añadir eventos a los nuevos botones
-  btnAtaqueFisico.addEventListener('click', () => ataque('fisico'));
-  btnAtaqueEspecial.addEventListener('click', () => ataque('especial'));
+
+  if (+PokePropio.velocidad.innerHTML >= +PokeRival.velocidad.innerHTML) {
+    turnoPropio = true;
+  } else {
+    turnoPropio = false;
+    let numeroRandom = getNumRandom() % 2;
+    alert(numeroRandom)
+    ataque(numeroRandom);
+  }
+
+  btnAtaqueFisico.addEventListener('click', () => {
+    ataque(true);
+    btnAtaqueFisico.disabled = !turnoPropio;
+  });
+  btnAtaqueEspecial.addEventListener('click', () => {
+    ataque(false);
+    btnAtaqueEspecial.disabled = !turnoPropio;
+  });
+
 };
 
 // Función para gestionar ataques
-const ataque = (tipo) => {
-  if (tipo === 'fisico') {
-    alert('¡Ataque físico ejecutado!');
-    // Aquí se implementa la lógica para ataques físicos
-  } else if (tipo === 'especial') {
-    alert('¡Ataque especial ejecutado!');
-    // Aquí se implementa la lógica para ataques especiales
+const ataque = (ataqueFisico) => {
+  let pokeaux1;
+  let pokeaux2;
+  let indice1;
+  let indice2;
+  let danoRecib;
+
+  if(turnoPropio){
+    pokeaux1 = PokePropio;
+    pokeaux2 = PokeRival;
+    indice1 = tiposPoke.get(pokeaux1.tipo1.innerHTML);
+    indice2 = tiposPoke.get(pokeaux2.tipo1.innerHTML);
+  } else {
+    pokeaux1 = PokeRival;
+    pokeaux2 = PokePropio;
+    indice1 = tiposPoke.get(pokeaux2.tipo1.innerHTML);
+    indice2 = tiposPoke.get(pokeaux1.tipo1.innerHTML);
   }
+
+  if (ataqueFisico) {
+    alert('¡Ataque físico ejecutado!');
+    danoRecib = tabla_ataque[indice1][indice2](+pokeaux1.ataqueFisico.innerHTML - +pokeaux2.defensaFis.innerHTML);
+    pokeaux2.vida.innerHTML = +pokeaux2.vida.innerHTML - danoRecib; 
+    alert(pokeaux2.vida.innerHTML);
+  } else {
+    alert('¡Ataque especial ejecutado!');
+    danoRecib = tabla_ataque[indice2][indice1](+pokeaux2.ataqueFisico.innerHTML - +pokeaux1.defensaFis.innerHTML);
+    pokeaux1.vida.innerHTML = +pokeaux1.vida.innerHTML - danoRecib; 
+  }
+
+  turnoPropio = !turnoPropio;
 };
 
 // Función de combate
@@ -183,7 +223,7 @@ btnElegir.addEventListener('click', () => {
   if (btnElegir.textContent == 'Elegir poke') {
     PokePropio.obtenerPoke();
     input.remove();
-    btnElegir.textContent ='Reiniciar';
+    btnElegir.textContent = 'Reiniciar';
   } else {
     location.reload();
   }
