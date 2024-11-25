@@ -1,5 +1,3 @@
-
-
 body {
   height: 100%;
   width: 100%;
@@ -17,7 +15,7 @@ body {
 }
 
 header {
-  display: flex; 
+  display: 40px; 
   align-items: center; 
   justify-content: center; 
   background: linear-gradient(45deg, peru, goldenrod);
@@ -64,28 +62,22 @@ header {
 }
 
 #arena {
- 
-  position: relative;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-  /* Para mantener una proporción fija de 16:9 */
-  aspect-ratio: 16 / 9; 
+  margin: 0 auto;
+  height: 500px;
+  width: 70%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 
 .background-1 {
-  width: 90%; 
-  max-width: 1200px; /* Máximo ancho en pantallas grandes */
   background-image: url('./fondo.png');
 }
 
 .background-2 {
-  width: 80%; 
-  max-width: 1000px; /* Máximo ancho en pantallas grandes */
   background-image: url('./images.png');
 }
 
@@ -93,36 +85,32 @@ header {
   object-fit: contain;
   position: absolute;
   transition: all 0.3s ease;
-  top:30%;
-  left: 15%;
-  height: 70%;
+  top: 330px;
+  left: 220px;
 }
-
 .background-1 #pokeRival {
   object-fit: contain;
   position: absolute;
   transition: all 0.3s ease;
-  top:1%;
-  left: 50%;
-  height: 70%;
+  top: 185px;
+  left: 580px;
 }
-
+/* Fondo alternativo */
 .background-2 #pokePropio {
   object-fit: contain;
-  transition: all 0.3s ease;
   position: absolute;
-  top: 40%;
-  left: 10%;
-  height: 70%;
+  transition: all 0.3s ease;
+  height: 400px;
+  top: 300px;
+  left: 80px;
 }
-
 .background-2 #pokeRival {
   object-fit: contain;
-  transition: all 0.3s ease;
   position: absolute;
-  top: 1%;
-  left: 55%;
-  height: 70%;
+  transition: all 0.3s ease;
+  height: 300px;
+  top: 220px;
+  left: 645px;
 }
 
 #UI {
@@ -157,13 +145,21 @@ header {
   background-color: goldenrod;
   transform: scale(1.05);
 }
-@media (max-width: 768px) {
-  #arena {
-    width: 90vw;
-    height: 50vh; 
-  }
-  #pokePropio, #pokeRival {
-    max-width: 100%;
-  }
+
+#pokePropio{
+  position: absolute;
+  top: 350px;
+  left: 250px;
+  height: 250px;
+  height: 275px;
+  max-width: 30%;
+}
+#pokeRival{
+  position: absolute;
+  top: 200px;
+  left: 630px;
+  height: 250px;
+  height: 275px;
+  max-width: 30%;
 }
 
