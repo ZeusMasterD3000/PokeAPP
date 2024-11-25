@@ -26,7 +26,7 @@ class Pokemon {
       return res.data
     }).then((res) => {
       this.table.src = res.sprites.front_default;
-      if(this.propiedad == 'Propio') {
+      if (this.propiedad == 'Propio') {
         this.img.src = res.sprites.back_default;
       } else {
         this.img.src = res.sprites.front_default;
@@ -61,6 +61,7 @@ const getNumRandom = () => {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
+let turnoPropio;
 const PokePropio = new Pokemon('Propio');
 const PokeRival = new Pokemon('Rival');
 
@@ -98,30 +99,34 @@ tiposPoke.set("poison", 16);
 tiposPoke.set("flying", 17);
 
 const tabla_ataque = [
-  [1/2, 1/2, 1, 1, 1/2, 1, 1/2, 2, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1],
-  [1, 1/2, 1, 1/2, 1, 1, 2, 1, 1, 1, 1, 1/2, 1, 2, 1, 2, 1, 1],
-  [1/2, 1, 1, 1, 1, 1/2, 1/2, 1/2, 1, 1/2, 1, 2, 2, 1, 2, 1, 1/2, 1/2],
-  [1/2, 1, 1, 2, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 2, 1, 1/2, 1/2, 1, 1, 1, 1, 1, 1/2, 1, 1, 1, 0, 1, 2],
-  [1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0, 1, 2, 1, 1/2, 1, 1, 1],
-  [2, 1/2, 2, 1/2, 1, 1, 1/2, 1, 2, 1, 1, 2, 1, 1/2, 1, 1, 1, 1],
-  [1/2, 1, 1, 2, 1, 1, 1/2, 1, 1, 2, 1, 1, 1, 1, 2, 1/2, 1],
-  [1/2, 1/2, 1, 2, 1, 1, 1/2, 1, 1/2, 1, 1, 2, 1, 1, 1, 2, 1, 2],
-  [2, 1, 1/2, 1, 1, 0, 1, 1/2, 2, 1, 2, 1, 1/2, 2, 2, 1, 1/2, 1/2],
-  [1/2, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1/2, 1, 1, 1, 1],
-  [1/2, 2, 1/2, 1/2, 1, 1, 1/2, 1, 1, 1, 1, 1/2, 1, 2, 1, 2, 1/2, 1/2],
-  [1/2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1/2, 1, 0, 1, 2, 1],
-  [1/2, 1, 2, 1, 1, 1, 2, 1, 2, 1/2, 1, 1, 1, 1, 1, 1/2, 1, 2],
-  [1, 1, 1, 1, 1, 2, 1, 1/2, 1, 1/2, 1, 1, 2, 1, 1/2, 1, 1, 1],
-  [2, 1, 1/2, 1, 2, 1, 2, 1, 1, 1, 1, 1/2, 1, 2, 1, 1, 2, 0],
-  [0, 1, 1, 1, 1, 1/2, 1, 2, 1, 1, 1, 2, 1, 1/2, 1, 1/2, 1/2, 1],
-  [1/2, 1, 2, 1, 1/2, 1, 1, 1, 1, 2, 1, 2, 1, 1/2, 1, 1, 1, 1]
+  [1 / 2, 1 / 2, 1, 1, 1 / 2, 1, 1 / 2, 2, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1],
+  [1, 1 / 2, 1, 1 / 2, 1, 1, 2, 1, 1, 1, 1, 1 / 2, 1, 2, 1, 2, 1, 1],
+  [1 / 2, 1, 1, 1, 1, 1 / 2, 1 / 2, 1 / 2, 1, 1 / 2, 1, 2, 2, 1, 2, 1, 1 / 2, 1 / 2],
+  [1 / 2, 1, 1, 2, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 2, 1, 1 / 2, 1 / 2, 1, 1, 1, 1, 1, 1 / 2, 1, 1, 1, 0, 1, 2],
+  [1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0, 1, 2, 1, 1 / 2, 1, 1, 1],
+  [2, 1 / 2, 2, 1 / 2, 1, 1, 1 / 2, 1, 2, 1, 1, 2, 1, 1 / 2, 1, 1, 1, 1],
+  [1 / 2, 1, 1, 2, 1, 1, 1 / 2, 1, 1, 2, 1, 1, 1, 1, 2, 1 / 2, 1],
+  [1 / 2, 1 / 2, 1, 2, 1, 1, 1 / 2, 1, 1 / 2, 1, 1, 2, 1, 1, 1, 2, 1, 2],
+  [2, 1, 1 / 2, 1, 1, 0, 1, 1 / 2, 2, 1, 2, 1, 1 / 2, 2, 2, 1, 1 / 2, 1 / 2],
+  [1 / 2, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 / 2, 1, 1, 1, 1],
+  [1 / 2, 2, 1 / 2, 1 / 2, 1, 1, 1 / 2, 1, 1, 1, 1, 1 / 2, 1, 2, 1, 2, 1 / 2, 1 / 2],
+  [1 / 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1 / 2, 1, 0, 1, 2, 1],
+  [1 / 2, 1, 2, 1, 1, 1, 2, 1, 2, 1 / 2, 1, 1, 1, 1, 1, 1 / 2, 1, 2],
+  [1, 1, 1, 1, 1, 2, 1, 1 / 2, 1, 1 / 2, 1, 1, 2, 1, 1 / 2, 1, 1, 1],
+  [2, 1, 1 / 2, 1, 2, 1, 2, 1, 1, 1, 1, 1 / 2, 1, 2, 1, 1, 2, 0],
+  [0, 1, 1, 1, 1, 1 / 2, 1, 2, 1, 1, 1, 2, 1, 1 / 2, 1, 1 / 2, 1 / 2, 1],
+  [1 / 2, 1, 2, 1, 1 / 2, 1, 1, 1, 1, 2, 1, 2, 1, 1 / 2, 1, 1, 1, 1]
 ];
 
 // Alternar fondos del campo de batalla
 let fondoAlternado = false;
 
 btnBatalla.addEventListener('click', () => {
+  if (!PokePropio.nombre.innerHTML) {
+    alert('Por favor, selecciona un Pokémon antes de iniciar la batalla.');
+    return; // Salir si no se ha seleccionado un Pokémon
+  }
   const arena = document.querySelector('#arena');
 
   // Cambiar el fondo al presionar "Batalla"
@@ -131,7 +136,6 @@ btnBatalla.addEventListener('click', () => {
   fondoAlternado = !fondoAlternado;
 
   // Reemplazar botones después de iniciar la batalla
-  combate();
   mostrarOpcionesDeAtaque();
 });
 
@@ -140,9 +144,8 @@ const mostrarOpcionesDeAtaque = () => {
   // Seleccionar contenedor de botones
   const UI = document.querySelector('#UI');
 
-  // Eliminar botones existentes
-  btnElegir.remove();
-  btnBatalla.remove();
+  // Limpiar UI para evitar duplicación
+  UI.innerHTML = '';
 
   // Crear botón de Ataque Físico
   const btnAtaqueFisico = document.createElement('button');
@@ -156,38 +159,102 @@ const mostrarOpcionesDeAtaque = () => {
   btnAtaqueEspecial.textContent = 'Ataque Especial';
   UI.appendChild(btnAtaqueEspecial);
 
-  // Añadir eventos a los nuevos botones
-  btnAtaqueFisico.addEventListener('click', () => ataque('fisico'));
-  btnAtaqueEspecial.addEventListener('click', () => ataque('especial'));
+  // Determinar el turno inicial basado en la velocidad
+  if (+PokePropio.velocidad.innerHTML >= +PokeRival.velocidad.innerHTML) {
+    turnoPropio = true;
+  } else {
+    turnoPropio = false;
+    // Si el rival tiene el primer turno, ejecuta su ataque de forma automática
+    setTimeout(() => ataque(getNumRandom() % 2 === 0), 500);
+  }
+
+  // Habilitar o deshabilitar botones dependiendo del turno
+  btnAtaqueFisico.disabled = !turnoPropio;
+  btnAtaqueEspecial.disabled = !turnoPropio;
+
+  // Añadir eventos a los botones
+  btnAtaqueFisico.addEventListener('click', () => {
+    if (turnoPropio) {
+      ataque(true);
+      btnAtaqueFisico.disabled = true;
+      btnAtaqueEspecial.disabled = true;
+    }
+  });
+
+  btnAtaqueEspecial.addEventListener('click', () => {
+    if (turnoPropio) {
+      ataque(false);
+      btnAtaqueFisico.disabled = true;
+      btnAtaqueEspecial.disabled = true;
+    }
+  });
 };
 
-// Función para gestionar ataques
-const ataque = (tipo) => {
-  if (tipo === 'fisico') {
-    alert('¡Ataque físico ejecutado!');
-    // Aquí se implementa la lógica para ataques físicos
-  } else if (tipo === 'especial') {
-    alert('¡Ataque especial ejecutado!');
-    // Aquí se implementa la lógica para ataques especiales
+const ataque = (ataqueFisico) => {
+  let atacante = turnoPropio ? PokePropio : PokeRival;
+  let defensor = turnoPropio ? PokeRival : PokePropio;
+
+  let indiceAtacante = tiposPoke.get(atacante.tipo1.innerHTML);
+  let indiceDefensor = tiposPoke.get(defensor.tipo1.innerHTML);
+
+  let multiplicador = tabla_ataque[indiceAtacante][indiceDefensor];
+  if (defensor.tipo2.innerHTML) {
+    let indiceTipoSecundario = tiposPoke.get(defensor.tipo2.innerHTML);
+    multiplicador *= tabla_ataque[indiceAtacante][indiceTipoSecundario];
+  }
+
+  let danoBase = ataqueFisico
+    ? +atacante.atkFis.innerHTML - +defensor.defensaFis.innerHTML
+    : +atacante.atkEsp.innerHTML - +defensor.defensaEsp.innerHTML;
+
+  danoBase = Math.max(danoBase, 1);
+  let danoFinal = danoBase * multiplicador;
+
+  // Actualizar vida del defensor
+  defensor.vida.innerHTML = Math.max(+defensor.vida.innerHTML - danoFinal, 0);
+
+  // Verifica si el defensor ha perdido
+  if (+defensor.vida.innerHTML <= 0) {
+    alert(`¡${atacante.nombre.innerHTML} ha ganado la batalla!`);
+    finalizarBatalla();
+    return;
+  }
+
+  // Cambiar turno
+  turnoPropio = !turnoPropio;
+
+  // Habilitar o deshabilitar botones dependiendo del turno
+  const btnAtaqueFisico = document.querySelector('#btn-atk-fis');
+  const btnAtaqueEspecial = document.querySelector('#btn-atk-esp');
+  btnAtaqueFisico.disabled = !turnoPropio;
+  btnAtaqueEspecial.disabled = !turnoPropio;
+
+  // Si es turno del rival, ejecuta su ataque automáticamente
+  if (!turnoPropio) {
+    setTimeout(() => ataque(getNumRandom() % 2 === 0), 500);
   }
 };
 
-// Función de combate
-const combate = () => {
-  alert('¡El combate comenzará aquí!');
-};
+const finalizarBatalla = () => {
+  const UI = document.querySelector('#UI');
+  UI.innerHTML = ''; // Limpia los botones de ataque
 
+  // Mostrar botón para reiniciar la batalla
+  const reiniciarBtn = document.createElement('button');
+  reiniciarBtn.textContent = 'Reiniciar Batalla';
+  reiniciarBtn.addEventListener('click', () => location.reload());
+  UI.appendChild(reiniciarBtn);
+};
 
 window.addEventListener('load', () => PokeRival.obtenerPoke());
 btnElegir.addEventListener('click', () => {
   if (btnElegir.textContent == 'Elegir poke') {
     PokePropio.obtenerPoke();
     input.remove();
-    btnElegir.textContent ='Reiniciar';
+    btnElegir.textContent = 'Reiniciar';
   } else {
     location.reload();
   }
 });
 
 btnPelear.addEventListener();
-
